@@ -5,6 +5,14 @@ import ListItem from "./ListItem";
 const List = () => {
   const [employees, setEmployees] = useState([]);
 
+  const save = (emp) => {
+    axios
+      .put(`${process.env.REACT_APP_API_PATH}/employees/${emp.id}`, { ...emp })
+      .then((res) => {
+        fetchAllRecords();
+      });
+  };
+
   const fetchAllRecords = () => {
     axios.get(`${process.env.REACT_APP_API_PATH}/employees`).then((res) => {
       if (res && res.data) {
@@ -34,7 +42,7 @@ const List = () => {
           {employees &&
             employees.length > 0 &&
             employees.map((emp, i) => {
-              return <ListItem  key={i + "emp"} data={emp} />;
+              return <ListItem key={i + "emp"} data={emp} save={save} />;
             })}
         </tbody>
       </table>
