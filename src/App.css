@@ -7,6 +7,15 @@
 .add-button-container{
   margin: 20px 0;
 }
+.gender-selection{
+  width:170px;
+}
+.button-container{
+  margin: 20px;
+}
+.button-container Button{
+  margin: 0 10px;
+}
 table {
   margin: auto;
   border-style: hidden;

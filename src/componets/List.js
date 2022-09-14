@@ -12,7 +12,7 @@ const List = () => {
   const [severity, setSeverity] = useState("info");
   const [message, setMessage] = useState("");
   const [isAdding, setIsAdding] = useState(false);
-  let newEmp;
+  let newEmp = {};
 
   const save = (emp) => {
     axios
@@ -52,44 +52,83 @@ const List = () => {
     newEmp[type] = value;
   };
 
+  const handleAdd = () => {
+    setIsAdding(true);
+  };
+
+  const handleSave = () => {
+    if (Object.keys(newEmp).length > 0) {
+      newEmp["id"] = parseInt(employees[employees.length - 1].id) + 1;
+      newEmp["isCompleted"] = false;
+      setIsAdding(false);
+      axios
+        .post(`${process.env.REACT_APP_API_PATH}/employees`, { ...newEmp })
+        .then((res) => {
+          setSeverity("success");
+          setMessage("Employee details saved successfully");
+          setOpen(true);
+          fetchAllRecords();
+        });
+    }
+  };
+
   useEffect(() => fetchAllRecords(), []);
 
   return (
     <div className="emp-details">
       <div className="heading">CRUD Application</div>
-      <form>
-        <input
-          type="text"
-          placeholder="Enter Name"
-          onChange={(e) => handleChange("name", e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Age"
-          onChange={(e) => handleChange("age", e.target.value)}
-        />
-        <select onChange={(e) => handleChange("gender", e.target.value)}>
-          <option value="">Select Gender</option>
-          <option value="female">female</option>
-          <option value="male">male</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Enter Email ID"
-          onChange={(e) => handleChange("email", e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Phone Number"
-          onChange={(e) => handleChange("phone", e.target.value)}
-        />
-      </form>
-      <div className="add-button-container">
-        <Button variant="outlined">
-          <AddIcon color="primary" />
-          Add New
-        </Button>
-      </div>
+      {isAdding ? (
+        <form>
+          <input
+            type="text"
+            placeholder="Enter Name"
+            onChange={(e) => handleChange("name", e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            placeholder="Enter Age"
+            onChange={(e) => handleChange("age", e.target.value)}
+          />
+          <br />
+          <select
+            className="gender-selection"
+            onChange={(e) => handleChange("gender", e.target.value)}
+          >
+            <option value="">Select Gender</option>
+            <option value="female">female</option>
+            <option value="male">male</option>
+          </select>
+          <br />
+          <input
+            type="text"
+            placeholder="Enter Email ID"
+            onChange={(e) => handleChange("email", e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            placeholder="Enter Phone Number"
+            onChange={(e) => handleChange("phone", e.target.value)}
+          />
+          <br />
+          <div className="button-container">
+            <Button variant="outlined" onClick={handleSave}>
+              Save
+            </Button>
+            <Button variant="outlined" onClick={() => setIsAdding(false)}>
+              Cancel
+            </Button>
+          </div>
+        </form>
+      ) : (
+        <div className="add-button-container">
+          <Button variant="outlined" onClick={handleAdd}>
+            <AddIcon color="primary" />
+            &nbsp; Add New
+          </Button>
+        </div>
+      )}
       <table>
         <thead>
           <tr>
