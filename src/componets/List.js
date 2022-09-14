@@ -2,10 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import ListItem from "./ListItem";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [severity, setSeverity] = useState("info");
+  const [message, setMessage] = useState("");
   const [isAdding, setIsAdding] = useState(false);
   let newEmp;
 
@@ -13,6 +18,9 @@ const List = () => {
     axios
       .put(`${process.env.REACT_APP_API_PATH}/employees/${emp.id}`, { ...emp })
       .then((res) => {
+        setSeverity("success");
+        setMessage("Employee details saved successfully");
+        setOpen(true);
         fetchAllRecords();
       });
   };
@@ -29,8 +37,15 @@ const List = () => {
     axios
       .delete(`${process.env.REACT_APP_API_PATH}/employees/${emp.id}`)
       .then((res) => {
+        setSeverity("success");
+        setMessage("Employee deleted successfully");
+        setOpen(true);
         fetchAllRecords();
       });
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleChange = (type, value) => {
@@ -103,6 +118,11 @@ const List = () => {
             })}
         </tbody>
       </table>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+        <Alert variant="filled" severity={severity} onClose={handleClose}>
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
