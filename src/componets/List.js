@@ -21,6 +21,14 @@ const List = () => {
     });
   };
 
+  const deleteRecord = (emp) => {
+    axios
+      .delete(`${process.env.REACT_APP_API_PATH}/employees/${emp.id}`)
+      .then((res) => {
+        fetchAllRecords();
+      });
+  };
+
   useEffect(() => fetchAllRecords(), []);
 
   return (
@@ -42,7 +50,14 @@ const List = () => {
           {employees &&
             employees.length > 0 &&
             employees.map((emp, i) => {
-              return <ListItem key={i + "emp"} data={emp} save={save} />;
+              return (
+                <ListItem
+                  key={i + "emp"}
+                  data={emp}
+                  save={save}
+                  deleteRecord={deleteRecord}
+                />
+              );
             })}
         </tbody>
       </table>

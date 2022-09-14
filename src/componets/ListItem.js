@@ -19,6 +19,16 @@ const ListItem = (props) => {
     props.save(emp);
   };
 
+  const handleDelete = () => {
+    if (
+      window.confirm("Are you sure you want to delete the employee details") ===
+      true
+    ) {
+      emp.isCompleted = true;
+      props.deleteRecord(emp);
+    }
+  };
+
   return isEditable === false ? (
     <tr>
       <td>{emp.name}</td>
@@ -32,7 +42,7 @@ const ListItem = (props) => {
         </Button>
       </td>
       <td>
-        <Button variant="outlined" color="error">
+        <Button variant="outlined" color="error" onClick={handleDelete}>
           <DeleteIcon sx={{ color: red[500] }} />
         </Button>
       </td>
