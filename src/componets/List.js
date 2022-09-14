@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import ListItem from "./ListItem";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
+  const [isAdding, setIsAdding] = useState(false);
+  let newEmp;
 
   const save = (emp) => {
     axios
@@ -29,10 +33,48 @@ const List = () => {
       });
   };
 
+  const handleChange = (type, value) => {
+    newEmp[type] = value;
+  };
+
   useEffect(() => fetchAllRecords(), []);
 
   return (
     <div className="emp-details">
+      <div className="heading">CRUD Application</div>
+      <form>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          onChange={(e) => handleChange("name", e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Enter Age"
+          onChange={(e) => handleChange("age", e.target.value)}
+        />
+        <select onChange={(e) => handleChange("gender", e.target.value)}>
+          <option value="">Select Gender</option>
+          <option value="female">female</option>
+          <option value="male">male</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Enter Email ID"
+          onChange={(e) => handleChange("email", e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Enter Phone Number"
+          onChange={(e) => handleChange("phone", e.target.value)}
+        />
+      </form>
+      <div className="add-button-container">
+        <Button variant="outlined">
+          <AddIcon color="primary" />
+          Add New
+        </Button>
+      </div>
       <table>
         <thead>
           <tr>
