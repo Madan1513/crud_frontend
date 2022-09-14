@@ -19,6 +19,16 @@ const ListItem = (props) => {
     props.save(emp);
   };
 
+  const handleComplete = () => {
+    if (
+      window.confirm("Are you sure you want to mark this item as complete") ===
+      true
+    ) {
+      emp.isCompleted = true;
+      props.save(emp);      
+    }
+  };
+
   const handleDelete = () => {
     if (
       window.confirm("Are you sure you want to delete the employee details") ===
@@ -50,7 +60,7 @@ const ListItem = (props) => {
         {emp.isCompleted ? (
           <DoneIcon sx={{ color: green[500] }} />
         ) : (
-          <Button variant="contained">
+          <Button variant="contained" onClick={handleComplete}>
             Complete
           </Button>
         )}
