@@ -1,19 +1,19 @@
 .App {
   text-align: center;
 }
-.heading{
+.heading {
   font-size: 40px;
 }
-.add-button-container{
+.add-button-container {
   margin: 20px 0;
 }
-.gender-selection{
-  width:170px;
+.gender-selection {
+  width: 170px;
 }
-.button-container{
+.button-container {
   margin: 20px;
 }
-.button-container Button{
+.button-container Button {
   margin: 0 10px;
 }
 table {
@@ -24,10 +24,14 @@ table {
 tr {
   border-bottom: 1px solid black;
 }
-td, th{
+td,
+th {
   padding: 10px;
 }
-.save-btn{
+.save-btn {
   margin-right: 15px !important;
 }
-
+.filter-container {
+  text-align: right;
+  margin-right: 300px;
+}

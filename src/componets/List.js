@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import AddIcon from "@mui/icons-material/Add";
 import ListItem from "./ListItem";
 
 const List = () => {
@@ -72,6 +72,20 @@ const List = () => {
     }
   };
 
+  const handleFilter = (filterValue) => {
+    if (filterValue === "all") {
+      fetchAllRecords();
+    } else {
+      axios
+        .get(`${process.env.REACT_APP_API_PATH}/employees?isCompleted=true`)
+        .then((res) => {
+          if (res && res.data) {
+            setEmployees(res.data);
+          }
+        });
+    }
+  };
+
   useEffect(() => fetchAllRecords(), []);
 
   return (
@@ -129,6 +143,14 @@ const List = () => {
           </Button>
         </div>
       )}
+      <div className="filter-container">
+        Filter Records: &nbsp;
+        <select onChange={(e) => handleFilter(e.target.value)}>
+          <option value="">Select Filter</option>
+          <option value="all">All Records</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
       <table>
         <thead>
           <tr>

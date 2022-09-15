@@ -25,7 +25,7 @@ const ListItem = (props) => {
       true
     ) {
       emp.isCompleted = true;
-      props.save(emp);      
+      props.save(emp);
     }
   };
 
