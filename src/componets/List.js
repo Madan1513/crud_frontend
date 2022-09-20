@@ -5,7 +5,7 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AddIcon from "@mui/icons-material/Add";
 import ListItem from "./ListItem";
-import { createService } from "../services/createService";
+import { addNewService } from "../services/addNewService";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
@@ -62,7 +62,7 @@ const List = () => {
       newEmp["id"] = parseInt(employees[employees.length - 1].id) + 1;
       newEmp["isCompleted"] = false;
       setIsAdding(false);
-      createService(newEmp).then((res) => {
+      addNewService(newEmp).then((res) => {
         setSeverity("success");
         setMessage("Employee details saved successfully");
         setOpen(true);

@@ -1,5 +1,5 @@
 import axios from "axios";
 
-export const createService = (data)=>{
+export const addNewService = (data)=>{
     return axios.post(`${process.env.REACT_APP_API_PATH}/employees`, { ...data })
 }
