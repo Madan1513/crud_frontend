@@ -5,6 +5,7 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AddIcon from "@mui/icons-material/Add";
 import ListItem from "./ListItem";
+import { createService } from "../services/createService";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
@@ -61,14 +62,12 @@ const List = () => {
       newEmp["id"] = parseInt(employees[employees.length - 1].id) + 1;
       newEmp["isCompleted"] = false;
       setIsAdding(false);
-      axios
-        .post(`${process.env.REACT_APP_API_PATH}/employees`, { ...newEmp })
-        .then((res) => {
-          setSeverity("success");
-          setMessage("Employee details saved successfully");
-          setOpen(true);
-          fetchAllRecords();
-        });
+      createService(newEmp).then((res) => {
+        setSeverity("success");
+        setMessage("Employee details saved successfully");
+        setOpen(true);
+        fetchAllRecords();
+      });
     }
   };
 
