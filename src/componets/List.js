@@ -5,6 +5,10 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AddIcon from "@mui/icons-material/Add";
 import ListItem from "./ListItem";
+import { addNewService } from "../services/addNewService";
+import { updateService } from "../services/updateService";
+import { deleteService } from "../services/deleteService";
+import { getService } from "../services/getService";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
@@ -15,18 +19,16 @@ const List = () => {
   let newEmp = {};
 
   const save = (emp) => {
-    axios
-      .put(`${process.env.REACT_APP_API_PATH}/employees/${emp.id}`, { ...emp })
-      .then((res) => {
-        setSeverity("success");
-        setMessage("Employee details saved successfully");
-        setOpen(true);
-        fetchAllRecords();
-      });
+    updateService(emp).then(() => {
+      setSeverity("success");
+      setMessage("Employee details saved successfully");
+      setOpen(true);
+      fetchAllRecords();
+    });
   };
 
   const fetchAllRecords = () => {
-    axios.get(`${process.env.REACT_APP_API_PATH}/employees`).then((res) => {
+    getService().then((res) => {
       if (res && res.data) {
         setEmployees(res.data);
       }
@@ -34,14 +36,12 @@ const List = () => {
   };
 
   const deleteRecord = (emp) => {
-    axios
-      .delete(`${process.env.REACT_APP_API_PATH}/employees/${emp.id}`)
-      .then((res) => {
-        setSeverity("success");
-        setMessage("Employee deleted successfully");
-        setOpen(true);
-        fetchAllRecords();
-      });
+    deleteService(emp).then(() => {
+      setSeverity("success");
+      setMessage("Employee deleted successfully");
+      setOpen(true);
+      fetchAllRecords();
+    });
   };
 
   const handleClose = () => {
@@ -61,14 +61,12 @@ const List = () => {
       newEmp["id"] = parseInt(employees[employees.length - 1].id) + 1;
       newEmp["isCompleted"] = false;
       setIsAdding(false);
-      axios
-        .post(`${process.env.REACT_APP_API_PATH}/employees`, { ...newEmp })
-        .then((res) => {
-          setSeverity("success");
-          setMessage("Employee details saved successfully");
-          setOpen(true);
-          fetchAllRecords();
-        });
+      addNewService(newEmp).then((res) => {
+        setSeverity("success");
+        setMessage("Employee details saved successfully");
+        setOpen(true);
+        fetchAllRecords();
+      });
     }
   };
 
