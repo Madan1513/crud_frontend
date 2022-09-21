@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+.landing-conatiner {
+  margin: auto;
+  padding-top: 50px;
+}
 .heading {
   font-size: 40px;
 }
