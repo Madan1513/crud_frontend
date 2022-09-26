@@ -73,7 +73,7 @@ const List = () => {
       fetchAllRecords();
     } else {
       axios
-        .get(`${process.env.REACT_APP_API_PATH}/employees?isCompleted=true`)
+        .get(`${process.env.REACT_APP_API_PATH}/employee/isCompleted`)
         .then((res) => {
           if (res && res.data) {
             setEmployees(res.data);
