@@ -58,8 +58,6 @@ const List = () => {
 
   const handleSave = () => {
     if (Object.keys(newEmp).length > 0) {
-      newEmp["id"] = parseInt(employees[employees.length - 1].id) + 1;
-      newEmp["isCompleted"] = false;
       setIsAdding(false);
       addNewService(newEmp).then((res) => {
         setSeverity("success");
