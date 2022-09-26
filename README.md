@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started with CRUD React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -11,60 +11,41 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Click on "Click to view CRUD page" link to go the employees page.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# App Features
 
-### `npm run build`
+## List the Employee
+The details of the employee will be shown the user in form of a table wich is presentablein manner.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Add New Employee
+In the app one can add a new employee by clicking on the add new button./
+Then the user will be presented a form that needs to be filled./
+After clicling on the save button the data will be saved and will immediately refelect in the list.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Update an Employee
+Update the details of an existing employee by clicking the edit button present next to the details./
+Then the deatils of the employee will be editable and the usercan edit it./
+CLicling the save button will save the updated details.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Delete an Employee
+Clicking on the delete button present rightbeside the record will delete the employee data./
+After clicking the button an confirmation box will apper which will ask the user to confirm before delete the employee data./
+Post confirmation the data will get deleted.
 
-### `npm run eject`
+## Marking Employee as Complete
+There is a button provided wich will allow the user to mark an employee as complete./
+Once the employee is marked completed the employee deatils will come with a "tick" mark stating that the employee id marked completed.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Filtering of Employee
+There is dropdown provided in the top right corner of the page wichallows the user to filter the employees based on completion status.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If there is any task that cannot be rolled back then the user will be presented with a confirmation box on confirmation the task will get executed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The user will also get a notification upon the completeion of a task successfully.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Note
+I have uploaded the .env file as this will be required for the app to run on the local by pulling the data from the server which is hosted in HEROKU.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
